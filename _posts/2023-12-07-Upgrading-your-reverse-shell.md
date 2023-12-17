@@ -6,6 +6,8 @@ toc: true
 toc_label: "Table of Contents"
 toc_icon: "fas fa-book-open"
 toc_sticky: true
+header:
+    image: /assets/images/shells.jpeg
 ---
 
 > After we have gotten our reverse shell, it will have limitations such as no auto-completions and messy file listings. Here is how we can make our shell better inside our target's system:
