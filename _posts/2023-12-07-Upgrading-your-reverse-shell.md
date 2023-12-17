@@ -7,7 +7,8 @@ toc_label: "Table of Contents"
 toc_icon: "fas fa-book-open"
 toc_sticky: true
 header:
-    image: /assets/images/shells.jpeg
+    image: https://images.unsplash.com/photo-1472152083436-a6eede6efad9?q=80&w=2669&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+    caption: "Photo by [**Biel Morro**](https://unsplash.com/@bielmorro?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [**Unsplash**](https://unsplash.com/photos/brown-conch-shell-on-right-human-palm-_l8ZdgJ9m7w?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)"
 ---
 
 > After we have gotten our reverse shell, it will have limitations such as no auto-completions and messy file listings. Here is how we can make our shell better inside our target's system:
