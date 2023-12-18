@@ -6,6 +6,7 @@ toc: true
 toc_label: "Table of Contents"
 toc_icon: "fas fa-book-open"
 toc_sticky: true
+future: true
 header:
     image: https://static1.squarespace.com/static/5a01100f692ebe0459a1859f/t/5f9123d2b807353e905b4fe6/1603347440376/BSY+Security+Class+Diagrams+-+_etc_passwd+%28L%29.jpg?format=1500w
     caption: "Photo by [**Trystan**](https://www.stratosphereips.org/blog/2020/10/22/a-visual-display-of-etcpasswd-andetcshadow) on [**Stratosphere Lab**](https://www.stratosphereips.org)"
