@@ -9,3 +9,14 @@ search: false
 @import "minimal-mistakes"; // main partials
 
 .page__hero { max-width: 1280px; margin-left: auto; margin-right: auto; };
+
+.thumbnail-container {
+    max-width: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+.thumbnail-container img {
+    margin-top: -11.5%;
+    margin-bottom: -11.5%;
+}

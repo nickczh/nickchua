@@ -10,6 +10,7 @@ future: true
 header:
     image: https://static1.squarespace.com/static/5a01100f692ebe0459a1859f/t/5f9123d2b807353e905b4fe6/1603347440376/BSY+Security+Class+Diagrams+-+_etc_passwd+%28L%29.jpg?format=1500w
     caption: "Photo by [**Trystan**](https://www.stratosphereips.org/blog/2020/10/22/a-visual-display-of-etcpasswd-andetcshadow) on [**Stratosphere Lab**](https://www.stratosphereips.org)"
+    teaser: https://images.unsplash.com/photo-1633265486064-086b219458ec?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 ---
 
 > The /etc/passwd file is a file we should check whenever we gain access into a system. A simple misconfiguration with the file permission can enable us to become root.
