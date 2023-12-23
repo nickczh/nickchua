@@ -49,5 +49,15 @@ rustscan -a 10.150.150.18 --range 1-65535 --ulimit 5000
 
 ### Web Enumeration
 
-Often times, our target machine will usually have ports 80 (HTTP) and 443 (HTTPS) open. These means we may visit the target ip address on our browser and we should see a web application running.
+Often times, our target machine will usually have ports 80 (HTTP) and 443 (HTTPS) open. This means we may visit the target ip address on our browser and we should see a web application running.
+
+We should always check for any hidden directories, subdomains or files on the webserver that are not intended for public access. Tools such as FFUF, GoBuster or DirBuster can be used to perform such directory enumeration.
+
+We will be exploring FFUF for this article.
+
+```
+ffuf -u http://10.150.150.18/FUZZ -w /usr/share/wordlists/SecLists/Discovery/Web-Content/big.txt
+```
+
+Here, the “FUZZ” keyword is used as a placeholder. Ffuf will try to hit the URL by replacing the word “FUZZ” with every word in the wordlist.
 
