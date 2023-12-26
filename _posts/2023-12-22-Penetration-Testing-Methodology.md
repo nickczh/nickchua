@@ -88,6 +88,7 @@ ffuf -w /path/to/wordlist -u https://target/FUZZ
 ffuf -u http://10.150.150.18/FUZZ -w /usr/share/wordlists/SecLists/Discovery/Web-Content/big.txt
 ```
 
+##### Directory / File Enumeration
 Here, the “FUZZ” keyword is used as a placeholder. Ffuf will try to hit the URL by replacing the word “FUZZ” with every word in the wordlist.
 
 Assuming that the default virtualhost response size is 4242 bytes, we can filter out all the responses of that size (-fs 4242). 
@@ -103,3 +104,9 @@ FILTER OPTIONS:
   -ft                 Filter by number of milliseconds to the first response byte, either greater or less than. EG: >100 or <100
   -fw                 Filter by amount of words in response. Comma separated list of word counts and ranges
 ```
+##### DNS Subdomain Enumeration
+Talk about adding new subdomain to the etc/hosts file.
+
+> Seclists
+
+To be continued.
