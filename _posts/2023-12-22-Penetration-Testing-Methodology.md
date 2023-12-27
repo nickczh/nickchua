@@ -53,13 +53,17 @@ Nmap (Network Mapper) allows us to scan the target's port numbers or the targets
 nmap -sC -sV 10.150.150.18
 ```
 
-> The -sC tag specifies that Nmap scripts should be used to try and obtain more detailed information. The -sV parameter instructs Nmap to perform a version scan. 
+> -sC specifies that Nmap scripts should be used to try and obtain more detailed information. <br><br>-sV instructs Nmap to perform a version scan. 
 
 In this scan, Nmap will fingerprint services on the target system and identify the service protocol, application name, and version.
 
 ![](/assets/images/nmap.png)
 
 By default, Nmap will only scan the 1,000 most common ports by default. To scan all 65,535 ports, we can use the -p- tag.
+
+Nmap is incredibly powerful with other features for attacking network services such as banner grabbing. Using Nmap script also allows us to check for specific vulnerability such as Citrix NetScaler (CVE-2019–19781). 
+
+We are barely scratching the surface!
 
 #### Rustscan
 
@@ -68,6 +72,15 @@ To quickly scan all ports in a machine, Rustscan is preferred for me as it will 
 ```
 rustscan -a 10.150.150.18 --range 1-65535 --ulimit 5000
 ```
+
+#### Attacking Network Services
+
+After scanning, certain ports may be open such as FTP, SMB or SNMP. These services may contain sensitive data or credentials for us to further login to the system.
+
+| Port | Services | Connect |
+| :----: | :--------: | :-------: |
+| 21 | FTP | ftp -p 10.150.150.18 |
+| 445| SMB | smbclient -N -L \\\\\\\\10.150.150.18 |
 
 ### Web Enumeration
 
@@ -88,6 +101,8 @@ ffuf -w /path/to/wordlist -u https://target/FUZZ
 ffuf -u http://10.150.150.18/FUZZ -w /usr/share/wordlists/SecLists/Discovery/Web-Content/big.txt
 ```
 
+> [SecLists Github](https://github.com/danielmiessler/SecLists) repository contains many useful lists for fuzzing and exploitation!
+
 ##### Directory / File Enumeration
 Here, the “FUZZ” keyword is used as a placeholder. Ffuf will try to hit the URL by replacing the word “FUZZ” with every word in the wordlist.
 
@@ -105,8 +120,45 @@ FILTER OPTIONS:
   -fw                 Filter by amount of words in response. Comma separated list of word counts and ranges
 ```
 ##### DNS Subdomain Enumeration
-Talk about adding new subdomain to the etc/hosts file.
+There also may be essential resources hosted on subdomains, such as admin panels or applications with additional functionality that could be exploited.
 
-> Seclists
+```
+curl -s -H "Host: nonexistent.ffuf.io.fi" http://ffuf.io.fi |wc -c
+```
+```
+612   # Received output
+```
+Filter out responses of length 612
 
-To be continued.
+```
+ffuf -c -w /path/to/wordlist -u http://ffuf.io.fi -H "Host: FUZZ.ffuf.io.fi" -fs 612
+```
+
+Be sure to add your newly discovered subdomain to the etc/hosts file.
+
+#### Tips
+
+##### Banner Grabbing / Web Server Headers
+
+We can use cURL to obtain server header information from the command line.
+
+```
+curl -IL 10.150.150.18
+```
+
+##### Whatweb
+
+Whatweb is a command-line tool to help us extract the version of web server, frameworks and technologies used. These can help to narrow down the vulnerabilities which we could exploit.
+
+```
+whatweb 10.150.150.18
+```
+
+##### Certificates
+SSL/TLS certificates are potential source of information if HTTPS is in use. In certain scenarios, you may find the email address of the company to perform a phishing attack.
+
+##### Robots
+A robots.txt file lets the search engine knows which resouces should or should not be allowed for indexing. It can contain information of privileged locations such as admin pages or private files.
+
+##### Source Code
+Last but not least, checking the source code of web pages may gives us some clues or even confidential information if we are lucky. These are carelessly left behind by developers and are usually commented.
