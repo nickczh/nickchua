@@ -35,10 +35,23 @@ fg
 ```
 Press on your keyboard: `Enter` (twice)
 
-In the reverse shell:
+Notice that our shell does not cover our entire terminal. To fix this, we shall open another terminal tab and input the following commands:
 ```
-export TERM=xterm
+echo $TERM
 ```
+Output: `xterm-256color`
+```
+stty size
+```
+Output: `70 255`
+
+In our reverse shell:
+```
+export TERM=xterm-256color
+stty rows 70 columns 255
+```
+
+Our reverse shell should now utilize the terminal's full features!
 
 ## Second way
 Check the version of python the target system is running in using:
