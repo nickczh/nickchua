@@ -24,7 +24,7 @@ Assuming you are running bash, in your reverse shell:
 python3 -c "import pty; pty.spawn('/bin/bash')"
 ```
 
-Press on your keyboard: `Ctrl + Z`
+Press on your keyboard: `Ctrl + Z`<br>
 Press on your keyboard: `Enter`
 
 On your local host:

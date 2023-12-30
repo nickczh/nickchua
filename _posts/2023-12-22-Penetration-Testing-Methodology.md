@@ -155,7 +155,7 @@ Filter out responses of length 612
 ffuf -c -w /path/to/wordlist -u http://ffuf.io.fi -H "Host: FUZZ.ffuf.io.fi" -fs 612
 ```
 
-Be sure to add your newly discovered subdomain to the etc/hosts file.
+Be sure to add your newly discovered subdomain to the /etc/hosts file.
 
 #### Tips
 
@@ -332,3 +332,40 @@ You may realize that after gaining a shell, its functionalities are limited comp
 To learn more, view [Upgrading your Reverse Shell](https://nickchua.com/2023/12/07/Upgrading-your-reverse-shell.html).
 
 ### Privilege Escalation
+Even after gaining access to our target system through a shell, we are usually in the context of a low-privileged user. Our access is therefore limited, which restricts our access over the entire machine.
+
+To gain full access, we need to find an internal vulnerability that would escalate our privileges to the root user on Linux or the administrator/SYSTEM user on Windows.
+
+#### PrivEsc Checklists
+There are several incredible resources which have a collection of checks for us to enumerate the target machine to find any potential vulnerabilities to escalate our privileges.
+
+They are: [HackTricks](https://book.hacktricks.xyz/welcome/readme), [GTFOBins](https://gtfobins.github.io), [PayloadsAllTheThings](https://swisskyrepo.github.io/PayloadsAllTheThings/) and more.
+
+#### Scripts
+A great way to automatically enumerate the target machine for ways to escalate our privilege is to run scripts. These scripts work by automatically executing commands which look for interesting findings, weaknesses or misconfigurations.
+
+Linux enumerations scripts: LinPEAS, LinEnum and linuxprivchecker
+Windows enumerations scripts: WinPEAS, Seatbelt and JAWS
+
+#### Techniques
+Below are some common scenarios in which privilege escalation can occur:
+
+##### Outdated Kernel
+An outdated kernel can be targetted by kernel exploits. A target server running an old OS without the latest patches are susceptible to kernel exploits found on unpatched versions of Linux and Windows.
+
+##### Vulnerable Software
+Installed software may also pose a threat to target system. To look for installed software on the system:
+
+On Linux, run:
+```
+dpkg -l
+```
+On Windows, look under:
+```
+C:\Program Files
+```
+
+##### User Privileges
+##### Scheduled Tasks
+##### Exposed Credentials
+##### SSH Keys
