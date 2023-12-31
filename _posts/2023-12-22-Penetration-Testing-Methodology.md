@@ -13,7 +13,7 @@ header:
     teaser: https://sites.breakingmedia.com/uploads/sites/3/2022/05/220524_cybersecurity_north_america_GettyImages-1213223956-scaled-1024x576.jpg
 ---
 
-In this post I am going to share some penetration testing process which I use both when conducting a general pentest or tackling Boot2Root machines.
+In this post I am going to share some penetration testing process which I use when conducting a general pentest or tackling Boot2Root machines.
 ## Introduction
 The [OWASP website](https://owasp.org/www-project-web-security-testing-guide/latest/3-The_OWASP_Testing_Framework/1-Penetration_Testing_Methodologies#penetration-testing-execution-standard) greatly summarises the penetration testing methodologies in terms of the standards and guides available.
 
@@ -445,7 +445,7 @@ root@remotehost#
 We can now SSH into the target machine as the user `root`.
 
 ## Credits
-Certain sections from this post were adapted from the Getting Started module from [HTB Academy](https://academy.hackthebox.com). 
+Certain sections from this post were adapted from the **Getting Started** module from [HTB Academy](https://academy.hackthebox.com). 
 
 The module gives a fantastic introduction to Penetration Testing, which I highly recommend anyone to check it out. This post also helps to summarize some knowledge from there for easy reference.
 
