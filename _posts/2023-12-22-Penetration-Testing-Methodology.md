@@ -350,6 +350,34 @@ Windows enumerations scripts: WinPEAS, Seatbelt and JAWS
 #### Techniques
 Below are some common scenarios in which privilege escalation can occur:
 
+##### Current Privileges
+Checking the privileges available to the user which we have access to the system is paramount. If we can run commands as root or another user, we can escalate our privileges to the other user respectively.
+Here are some common ways to escalate current user privileges:
+1. Sudo
+2. SUID
+3. Windows Token Privileges
+The `sudo` command in Linux allows a user to execute a command as another user (default: superuser), without giving them the identity of the root user. 
+To check the `sudo` privileges we have:
+```
+sudo -l
+```
+If the output allows all commands to be ran with `sudo`, we can subsequently use this command to switch to the root user:
+```
+sudo su -
+```
+However, you may realize that we need a password to run the above command with `sudo`. There are cases where some programs can be executed without having to provide a password:
+```
+sudo -l
+(user : user) NOPASSWD: /bin/cat
+```
+The NOPASSWD entry shows that the /bin/cat command can be executed without a password. This would be useful if we gained access to the server through a vulnerability and did not have the user's password. As it says user, we can run sudo as that user and not as root. To do so, we can specify the user with `-u user`:
+```
+sudo -u user /bin/cat random_file.txt
+```
+Once we find a particular application we can run with sudo, we can look for ways to exploit it to get a shell as the root user.
+> [GTFOBins](https://gtfobins.github.io) allows us to search for applications which we have `sudo` privilege and tell us the exact command we should execute to gain root access.<br><br>
+[LOLBAS](https://lolbas-project.github.io/#) contains a list of Windows applications which we may be able to leverage to perform certain functions in the context of a privileged user.
+
 ##### Outdated Kernel
 An outdated kernel can be targetted by kernel exploits. A target server running an old OS without the latest patches are susceptible to kernel exploits found on unpatched versions of Linux and Windows.
 
@@ -365,14 +393,30 @@ On Windows, look under:
 C:\Program Files
 ```
 
-##### Current Privileges
-Checking the privileges available to the user which we have access to the system is paramount. If we can run commands as root or another user, we can escalate our privileges to the other user respectively.
-Here are some common ways to exploit user privileges:
-1. Sudo
-2. SUID
-3. Windows Token Privileges
-
-
 ##### Scheduled Tasks
+Both Linux and Windows OS are able to run tasks at fixed intervals. This can happen through methods such as a script running (eg: every 1 hour). There are usually two ways to take advantage of scheduled tasks (Windows) or cron jobs (Linux) to escalate our privileges:
+1. Add new scheduled tasks/cron jobs
+2. Trick them to execute a malicious software
+
+The easiest way is to check if we are allowed to add new scheduled tasks. In Linux, a common form of maintaining scheduled tasks is through Cron Jobs. 
+
+There are specific directories that we may be able to utilize to add new cron jobs if we have the write permissions over them. These include:
+1. /etc/cron.d
+2. /etc/crontab
+3. /var/spool/cron/crontabs/root
+
+If we can write to a directory called by a cron job, we can write a bash script with a reverse shell command, which should send us a reverse shell when executed.
+
 ##### Exposed Credentials
+Exposed credentials are common in configuration files, log files, and user history files (bash_history in Linux and PSReadLine in Windows). These credentials might be reused which allows us to switch to that user using the same password:
+```
+$ su -
+
+Password: 123456
+whoami
+
+root
+```
+or SSH into the target machine as that user.
+
 ##### SSH Keys
