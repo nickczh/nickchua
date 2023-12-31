@@ -356,6 +356,7 @@ Here are some common ways to escalate current user privileges:
 1. Sudo
 2. SUID
 3. Windows Token Privileges
+
 The `sudo` command in Linux allows a user to execute a command as another user (default: superuser), without giving them the identity of the root user. 
 To check the `sudo` privileges we have:
 ```
