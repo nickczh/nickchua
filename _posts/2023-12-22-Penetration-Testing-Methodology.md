@@ -13,8 +13,7 @@ header:
     teaser: https://sites.breakingmedia.com/uploads/sites/3/2022/05/220524_cybersecurity_north_america_GettyImages-1213223956-scaled-1024x576.jpg
 ---
 
-In this post I am going to share some of my penetration testing process that I use both when I am performing general pentest or tackling Boot2Root machines.
-
+In this post I am going to share some penetration testing process which I use both when conducting a general pentest or tackling Boot2Root machines.
 ## Introduction
 The [OWASP website](https://owasp.org/www-project-web-security-testing-guide/latest/3-The_OWASP_Testing_Framework/1-Penetration_Testing_Methodologies#penetration-testing-execution-standard) greatly summarises the penetration testing methodologies in terms of the standards and guides available.
 
@@ -345,6 +344,7 @@ They are: [HackTricks](https://book.hacktricks.xyz/welcome/readme), [GTFOBins](h
 A great way to automatically enumerate the target machine for ways to escalate our privilege is to run scripts. These scripts work by automatically executing commands which look for interesting findings, weaknesses or misconfigurations.
 
 Linux enumerations scripts: LinPEAS, LinEnum and linuxprivchecker
+
 Windows enumerations scripts: WinPEAS, Seatbelt and JAWS
 
 #### Techniques
@@ -420,3 +420,33 @@ root
 or SSH into the target machine as that user.
 
 ##### SSH Keys
+If we have read access over the `.ssh` directory for a specific user, we may read their private ssh keys found in `/home/user/.ssh/id_rsa` or `/root/.ssh/id_rsa`, and use it to log in to the server. If we can read the `/root/.ssh/` directory and can read the `id_rsa` file, we can copy it to our machine and use the `-i` flag to log in with it:
+```
+$ vim id_rsa
+$ chmod 600 id_rsa
+$ ssh user@10.10.10.10 -i id_rsa
+
+root@remotehost#
+```
+If we find ourselves with write access to a users `/.ssh/` directory, we can place our public key in the user's ssh directory at `/home/user/.ssh/authorized_keys`. This technique is usually used to gain ssh access after gaining a shell as that user. The current SSH configuration will not accept keys written by other users, so it will only work if we have already gained control over that user. We must first create a new key with `ssh-keygen` and the `-f` flag to specify the output file:
+```
+$ ssh-keygen -f key
+```
+This will give us two files: `key` (which we will use with `ssh -i`) and `key.pub`, which we will copy to the remote machine. Let us copy `key.pub`, then on the remote machine, we will add it into `/root/.ssh/authorized_keys`:
+```
+$ echo "ssh-rsa AAAAB...SNIP...M= user@ownmachine" >> /root/.ssh/authorized_keys
+```
+Now, the remote server should allow us to log in as that user by using our private key:
+```
+$ ssh root@10.10.10.10 -i key
+
+root@remotehost#
+```
+We can now SSH into the target machine as the user `root`.
+
+## Credits
+Certain sections from this post were adapted from the Getting Started module from [HTB Academy](https://academy.hackthebox.com). 
+
+The module gives a fantastic introduction to Penetration Testing, which I highly recommend anyone to check it out. This post also helps to summarize some knowledge from there for easy reference.
+
+Thank you for the read and I truly appreciate you for making it this far.
