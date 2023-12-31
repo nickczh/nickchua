@@ -365,7 +365,14 @@ On Windows, look under:
 C:\Program Files
 ```
 
-##### User Privileges
+##### Current Privileges
+Checking the privileges available to the user which we have access to the system is paramount. If we can run commands as root or another user, we can escalate our privileges to the other user respectively.
+Here are some common ways to exploit user privileges:
+1. Sudo
+2. SUID
+3. Windows Token Privileges
+
+
 ##### Scheduled Tasks
 ##### Exposed Credentials
 ##### SSH Keys
