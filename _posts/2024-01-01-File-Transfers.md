@@ -1,12 +1,18 @@
 ---
-layout: single
 title:  "File Transfer - Post Exploitation"
+path: ""
+type: posts
+layout: single
 author_profile: true
+read_time: true
+comments: true
+share: true
+related: true
+future: true
 toc: true
+toc_sticky: true
 toc_label: "Table of Contents"
 toc_icon: "fas fa-book-open"
-toc_sticky: true
-future: true
 header:
     image: https://images.unsplash.com/photo-1512317049220-d3c6fcaf6681?q=80&w=2669&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
     caption: "Photo by [**Ilya Pavlov**](https://unsplash.com/@ilyapavlov) on [**Unsplash**](https://unsplash.com/photos/a-close-up-of-a-computer-screen-with-a-menu-hXrPSgGFpqQ)"

@@ -1,12 +1,18 @@
 ---
-layout: single
 title:  "Penetration Testing Methodology"
+path: ""
+type: posts
+layout: single
 author_profile: true
+read_time: true
+comments: true
+share: true
+related: true
+future: true
 toc: true
+toc_sticky: true
 toc_label: "Table of Contents"
 toc_icon: "fas fa-book-open"
-toc_sticky: true
-future: true
 header:
     image: https://sites.breakingmedia.com/uploads/sites/3/2022/05/220524_cybersecurity_north_america_GettyImages-1213223956-scaled.jpg
     caption: "Photo by [**Theresa Hitchens**](https://breakingdefense.com/author/thitchens/) on [**Breaking Defense**](https://breakingdefense.com/2023/03/new-watch-center-to-ring-alarms-on-space-related-cyber-threats/)"

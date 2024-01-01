@@ -17,7 +17,6 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-
 title: Nick Chua 
 title_separator: "|"
 subtitle: Penetration Testing & CTF write-ups
@@ -49,6 +48,7 @@ locale: "en-US"
 search: true
 breadcrumbs: true
 date_format: "%d %B %Y"
+permalink: none
 
 defaults:
   # _posts
