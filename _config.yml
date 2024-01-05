@@ -89,7 +89,7 @@ author:
 comments:
   provider: "disqus"
   disqus:
-    shortname: "Nick"
+    shortname: "nickchua"
 
 # Exclude from processing.
 # The following items will not be processed, by default.
