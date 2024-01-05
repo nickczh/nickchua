@@ -25,7 +25,13 @@ Upgrading and stabilizing your shell enables you to type in your commands better
 
 ## First way
 
-Assuming you are running bash, in your reverse shell:
+For this method to work, we have to check if our target machine has `python2` or `python3` installed via:
+```
+which python
+```
+If no output is returned, repeat the above step for `python3`.
+
+Assuming you are running bash, in your reverse shell, run the command below for whichever version of `python` available in the target machine:
 
 ```
 python3 -c "import pty; pty.spawn('/bin/bash')"
@@ -40,6 +46,11 @@ On your local host:
 stty raw -echo
 fg
 ```
+> If your shell formatting is off, simply enter the command:
+```
+reset
+```
+
 Press on your keyboard: `Enter` (twice)
 
 Notice that our shell does not cover our entire terminal. To fix this, we shall open another terminal tab and input the following commands:
