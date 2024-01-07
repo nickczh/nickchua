@@ -94,7 +94,7 @@
 ## Getting Started
 
 To explore the website, simply visit [nickchua.com](nickchua.com).\
-To get a local copy up and running follow these simple steps.
+To get a local copy up and running, follow these simple steps below:
 
 ### Prerequisites
 
