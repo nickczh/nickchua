@@ -155,7 +155,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- CONTACT -->
 ## Contact
 
-Nick Chua - [@twitter_handle](https://twitter.com/twitter_handle) - nick_chua@hotmail.com
+Nick Chua - nick_chua@hotmail.com
 
 Project Link: [https://github.com/nickczh/nickczh.github.io](https://github.com/nickczh/nickczh.github.io)
 
