@@ -123,24 +123,10 @@ Ensure you have these software installed in your computer.
 
 
 
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [ ] Attacking File Systems & Network Services 
 
 See the [open issues](https://github.com/nickczh/nickczh.github.io/issues) for a full list of proposed features (and known issues).
 
@@ -166,19 +152,10 @@ Don't forget to give the project a star! Thanks again!
 
 
 
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - nick_chua@hotmail.com
+Nick Chua - [@twitter_handle](https://twitter.com/twitter_handle) - nick_chua@hotmail.com
 
 Project Link: [https://github.com/nickczh/nickczh.github.io](https://github.com/nickczh/nickczh.github.io)
 
@@ -189,9 +166,7 @@ Project Link: [https://github.com/nickczh/nickczh.github.io](https://github.com/
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
