@@ -93,7 +93,7 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Simply visit [nickchua.com](nickchua.com) to explore the website.
+To explore the website, simply visit [nickchua.com](nickchua.com).\
 To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
@@ -228,7 +228,7 @@ Project Link: [https://github.com/nickczh/nickczh.github.io](https://github.com/
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
-[Ruby.com]: https://img.shields.io/badge/Ruby-red?styles=for-the-badge&logo=ruby&logoColor=red
+[Ruby.com]: https://img.shields.io/badge/Ruby-red?styles=for-the-badge&logo=ruby&logoColor=maroon
 [Ruby-url]: https://www.ruby-lang.org/en/
 [Jekyll.com]: https://img.shields.io/badge/Jekyll-yellow?styles=for-the-badge&logo=jekyll&logoColor=white
 [Jekyll-url]: https://jekyllrb.com
