@@ -31,7 +31,7 @@
 <h3 align="center">Personal Website</h3>
 
   <p align="center">
-    Documenting and sharing penetration testing techniques and related knowledge.
+    Documenting and sharing Penetration Testing techniques and related knowledge.
     <br />
     <a href="https://nickchua.com"><strong>Explore now »</strong></a>
     <br />
@@ -93,31 +93,30 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Simply visit [nickchua.com](nickchua.com) to explore the website.
+To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+Ensure you have these software installed in your computer.
+* Jekyll
+* Ruby
+* RubyGems
+* Minimal Mistakes
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/nickczh/nickczh.github.io.git
    ```
-3. Install NPM packages
+3. Navigate to the repo
    ```sh
-   npm install
+   cd nickczh.github.io.git
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+4. Build the site and make it available on a local server.
+   ```sh
+   bundle exec jekyll serve --livereload
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -229,7 +228,7 @@ Project Link: [https://github.com/nickczh/nickczh.github.io](https://github.com/
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
-[Ruby.com]: https://img.shields.io/badge/Ruby-red?styles=for-the-badge&logo=rubygems&logoColor=red
+[Ruby.com]: https://img.shields.io/badge/Ruby-red?styles=for-the-badge&logo=ruby&logoColor=red
 [Ruby-url]: https://www.ruby-lang.org/en/
 [Jekyll.com]: https://img.shields.io/badge/Jekyll-yellow?styles=for-the-badge&logo=jekyll&logoColor=white
 [Jekyll-url]: https://jekyllrb.com
