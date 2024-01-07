@@ -24,23 +24,21 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/nickczh/nickczh.github.io">
+    <img src="assets/images/readme_logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Personal Website</h3>
 
   <p align="center">
-    Documenting and sharing penetration testing techniques and related knowledge
+    Documenting and sharing penetration testing techniques and related knowledge.
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://nickchua.com"><strong>Explore now »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <a href="https://github.com/nickczh/nickczh.github.io/issues">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/nickczh/nickczh.github.io/issues">Request Feature</a>
   </p>
 </div>
 
@@ -77,9 +75,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+[![Product Name Screen Shot][product-screenshot]](https://nickchua.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -87,14 +83,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [![Ruby][Ruby.com]][Ruby-url]
 * [![Jekyll][Jekyll.com]][Jekyll-url]
 * [![Minimal Mistakes][Minimalmistakes.com]][Minimalmistakes-url]
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -120,7 +109,7 @@ This is an example of how to list things you need to use the software and how to
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/nickczh/nickczh.github.io.git
    ```
 3. Install NPM packages
    ```sh
@@ -154,7 +143,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Feature 3
     - [ ] Nested Feature
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/nickczh/nickczh.github.io/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -190,9 +179,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - nick_chua@hotmail.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/nickczh/nickczh.github.io](https://github.com/nickczh/nickczh.github.io)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -211,19 +200,19 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/nickczh/nickczh.github.io.svg?style=for-the-badge
+[contributors-url]: https://github.com/nickczh/nickczh.github.io/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/nickczh/nickczh.github.io.svg?style=for-the-badge
+[forks-url]: https://github.com/nickczh/nickczh.github.io/network/members
+[stars-shield]: https://img.shields.io/github/stars/nickczh/nickczh.github.io.svg?style=for-the-badge
+[stars-url]: https://github.com/nickczh/nickczh.github.io/stargazers
+[issues-shield]: https://img.shields.io/github/issues/nickczh/nickczh.github.io.svg?style=for-the-badge
+[issues-url]: https://github.com/nickczh/nickczh.github.io/issues
+[license-shield]: https://img.shields.io/github/license/nickczh/nickczh.github.io.svg?style=for-the-badge
+[license-url]: https://github.com/nickczh/nickczh.github.io/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: assets/images/webpage_screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
@@ -240,7 +229,9 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
-[Jekyll.com]: https://img.shields.io/badge/Jekyll-yellow
+[Ruby.com]: https://img.shields.io/badge/Ruby-red?styles=for-the-badge&logo=rubygems&logoColor=red
+[Ruby-url]: https://www.ruby-lang.org/en/
+[Jekyll.com]: https://img.shields.io/badge/Jekyll-yellow?styles=for-the-badge&logo=jekyll&logoColor=white
 [Jekyll-url]: https://jekyllrb.com
-[Minimalmistakes.com]: https://img.shields.io/badge/Minimal_Mistakes-grey
+[Minimalmistakes.com]: https://img.shields.io/badge/Minimal_Mistakes-grey?styles=for-the-badge&logoColor=grey
 [Minimalmistakes-url]: https://mmistakes.github.io/minimal-mistakes/
