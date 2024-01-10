@@ -38,20 +38,17 @@ python3 -c "import pty; pty.spawn('/bin/bash')"
 ```
 
 Press on your keyboard: `Ctrl + Z`<br>
-Press on your keyboard: `Enter`
 
 On your local host:
 
 ```
-stty raw -echo
-fg
+stty raw -echo; fg
 ```
+Press on your keyboard: `Enter` (twice)
 > If your shell formatting is off, simply enter the command:
 ```
 reset
 ```
-
-Press on your keyboard: `Enter` (twice)
 
 Notice that our shell does not cover our entire terminal. To fix this, we shall open another terminal tab and input the following commands:
 ```

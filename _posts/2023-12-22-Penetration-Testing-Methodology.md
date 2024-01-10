@@ -58,7 +58,7 @@ Nmap (Network Mapper) allows us to scan the target's port numbers or the targets
 nmap -sC -sV -v 10.150.150.18
 ```
 
-> -sC specifies that Nmap scripts should be used to try and obtain more detailed information. <br><br>-sV instructs Nmap to perform a version scan. <br><br>[Learn more](https://nmap.org/book/man-briefoptions.html)
+> -sC: Specifies that Nmap scripts should be used to try and obtain more detailed information. <br><br>-sV: Instructs Nmap to perform a version scan.<br><br>-v: Specifies a verbose output to see which ports are open before the scan is completed.<br><br>[Learn more](https://nmap.org/book/man-briefoptions.html)
 
 In this scan, Nmap will fingerprint services on the target system and identify the service protocol, application name, and version.
 
@@ -87,6 +87,13 @@ Nmap done: 1 IP address (1 host up) scanned in 87.12 seconds
 
 By default, Nmap will only scan the 1,000 most common ports by default. To scan all 65,535 ports, we can use the -p- tag.
 
+```
+# Quick scan to see which ports are open
+nmap -p- --min-rate 10000 10.150.150.18 
+
+# Subsequently, perform an in-depth scan
+nmap -p 22,80,1883,5672 -sCV 10.150.150.18 
+```
 Nmap is incredibly powerful with other features for attacking network services such as banner grabbing. Using Nmap script also allows us to check for specific vulnerability such as Citrix NetScaler (CVE-2019–19781). 
 
 We are barely scratching the surface!
